@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://foundation.zurb.com/templates/banded.html -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CS5248</title>
+	<meta name="description" content="Project">
+
+	<!-- css -->
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Main content -->
+	<div class="mainContainer">
+		<!-- The data encoding type, enctype, MUST be specified as below -->
+		<h1>CS5248</h1>
+		<form class="pure-form" enctype="multipart/form-data" action="upload.php" method="POST">
+		    <!-- MAX_FILE_SIZE must precede the file input field -->
+		    <input type="hidden" name="MAX_FILE_SIZE" value="100000000" />
+		    <!-- Name of input element determines name in $_FILES array -->
+		    <input class="pure-button" name="userfile" type="file" />
+		    <input class="pure-button pure-button-primary" type="submit" value="Send File" />
+		</form>
+	</div>
+</body>
+</html>
