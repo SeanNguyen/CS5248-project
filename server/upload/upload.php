@@ -1,6 +1,9 @@
 <?php
-// In PHP versions earlier than 4.1.0, $HTTP_POST_FILES should be used instead
-// of $_FILES.
+
+ini_set('upload_max_filesize', '10M');
+ini_set('post_max_size', '10M');
+ini_set('max_input_time', 300);
+ini_set('max_execution_time', 300);
 
 $uploaddir = './video_repo/';
 $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
