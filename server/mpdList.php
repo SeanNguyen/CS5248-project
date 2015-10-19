@@ -18,6 +18,6 @@ foreach ($it as $file) {
 }
 
 $json = json_encode($mpdList);
-echo $json;
+die(str_replace("\/", "/", $json));
 
 ?>
