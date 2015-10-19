@@ -23,7 +23,7 @@ while (1) {
 		}
 	}
 	$oldFiles = scandir($uploadPath);
-	print("watching... \n");
+	print(date('l jS \of F Y h:i:s A') . "\t watching... \n");
 	sleep(3); 
 }
 
