@@ -5,28 +5,26 @@ include 'dash.php';
 set_time_limit(0);
 
 $uploadPath = "uploads";
-$fileList = array();
+$oldFiles = array();
 
 //add all file in upload folder
-$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($uploadPath));
-foreach ($it as $file) {
-	array_push($fileList, $file);
-}
+$oldFiles = scandir($uploadPath);
 
 while (1) { 
-	$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($uploadPath));
-	foreach ($it as $file) {
-		for($i = 0; $i < count($fileList); ++$i) {
-			//if the file is new, then add it to the list and process dash
-			if(strcmp($file, $fileList[$i] !== 0) {
-				makeMpd($file);
-				array_push($fileList, $file);
-				print("Processed: " . $file);
-			}
+	$uploadedFiles = scandir($uploadPath);
+	$newFiles = array_merge(array_diff($uploadedFiles, $oldFiles));
+
+	for($i = 0; $i < count($newFiles); ++$i) {
+		//if the file is new, then add it to the list and process dash
+		$ext = getFileExtension($newFiles[$i]);
+		if(strcmp($ext, "mp4") === 0) {
+			makeMpd($uploadPath . DIRECTORY_SEPARATOR . $newFiles[$i]);
+			print("Processed: " . $newFiles[$i] . "\n");
 		}
 	}
-	print('watching...');
-	sleep(3000); 
+	$oldFiles = scandir($uploadPath);
+	print("watching... \n");
+	sleep(3); 
 }
 
 ?>
