@@ -5,7 +5,7 @@ ini_set('post_max_size', '10M');
 ini_set('max_input_time', 300);
 ini_set('max_execution_time', 300);
 
-$uploaddir = './video_repo/';
+$uploaddir = '../video_repo/';
 $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
 if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
