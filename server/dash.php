@@ -39,16 +39,19 @@ function makeMpd($sourceVideoPath) {
 	//Convert original video
 	//e.g: x264 --output intermediate_2400k.264 --fps 24 --preset slow --min-keyint 48 --keyint 48 --scenecut 0 --no-scenecut --pass 1 --video-filter "resize:width=1280,height=720" inputvideo.mkv
 	//ORIGINAL QUALITY
-	$command = 'x264'
-				. ' --output ' . $videoResultPath . DIRECTORY_SEPARATOR .'intermediate.264 --preset slow'
-				. ' --min-keyint ' . $fps * $tentativeSegmentDuration 
-				. ' --keyint ' . $fps * $tentativeSegmentDuration 
-				. ' --scenecut 0 --no-scenecut --pass 1 ' 
-				. $sourceVideoPath;
-	shell_exec($command);
+	// $command = 'x264'
+	// 			. ' --output ' . $videoResultPath . DIRECTORY_SEPARATOR .'intermediate.264 --preset slow'
+	// 			. ' --min-keyint ' . $fps * $tentativeSegmentDuration 
+	// 			. ' --keyint ' . $fps * $tentativeSegmentDuration 
+	// 			. ' --scenecut 0 --no-scenecut --pass 1 ' 
+	// 			. $sourceVideoPath;
+	// shell_exec($command);
 
-	$command = "MP4Box -add " . $videoResultPath . DIRECTORY_SEPARATOR . "intermediate.264 "
-				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4";
+	// $command = "MP4Box -add " . $videoResultPath . DIRECTORY_SEPARATOR . "intermediate.264 "
+	// 			. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4";
+	// shell_exec($command);
+
+	$command = "cp " . $sourceVideoPath . " " . $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4 ";
 	shell_exec($command);
 
 	//HALF QUALITY
@@ -57,12 +60,14 @@ function makeMpd($sourceVideoPath) {
 				. "-vf scale=". $width / 2 . ":" . $height  / 2 . " "
 				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_half.mp4";
 	shell_exec($command);
+	// echo $command;
 
 	//QUARTER QUALITY
 	$command = "ffmpeg -i " .  $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4 "
 				. "-vf scale=". $width / 4 . ":" . $height  / 4 . " "
 				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_quarter.mp4";
 	shell_exec($command);
+	// echo $command;
 
 	//make mpd file for videos
 	//ORIGINAL
@@ -71,7 +76,7 @@ function makeMpd($sourceVideoPath) {
 				. ' -out ' . $mpdPath
 				. ' -dash 10000 -frag 10000 -rap'
 				. ' -segment-name ' . $videoName . '_original_ '
-				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4";
+				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4#video";
 	shell_exec($command);
 
 	//HALF
@@ -80,7 +85,7 @@ function makeMpd($sourceVideoPath) {
 				. ' -out ' . $halfMpdPath
 				. ' -dash 10000 -frag 10000 -rap'
 				. ' -segment-name ' . $videoName . '_half_ '
-				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_half.mp4";
+				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_half.mp4#video";
 	shell_exec($command);
 
 	//QUARTER
@@ -89,7 +94,7 @@ function makeMpd($sourceVideoPath) {
 				. ' -out ' . $quarterMpdPath
 				. ' -dash 10000 -frag 10000 -rap'
 				. ' -segment-name ' . $videoName . '_quarter_ '
-				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_quarter.mp4";
+				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_quarter.mp4#video";
 	shell_exec($command);
 
 	//make mpd file for audio
@@ -101,7 +106,7 @@ function makeMpd($sourceVideoPath) {
 				. $sourceVideoPath . "#audio";
 	shell_exec($command);
 
-	//merge mpd files
+	// //merge mpd files
 	$mpd = file_get_contents($mpdPath . ".mpd");
 	$mpdHalf = file_get_contents($halfMpdPath . ".mpd");
 	$mpdQuarter = file_get_contents($quarterMpdPath . ".mpd");
