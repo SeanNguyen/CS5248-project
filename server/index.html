@@ -11,12 +11,16 @@
 	<!-- css -->
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 	<!-- Main content -->
 	<div class="mainContainer">
 		<!-- The data encoding type, enctype, MUST be specified as below -->
 		<h1>CS5248</h1>
+		<div>
+			<video id="videoPlayer" controls="true"></video>
+	   	</div>
 		<form class="pure-form" enctype="multipart/form-data" action="upload.php" method="POST">
 		    <!-- MAX_FILE_SIZE must precede the file input field -->
 		    <input type="hidden" name="MAX_FILE_SIZE" value="200000000" />
@@ -25,5 +29,9 @@
 		    <input class="pure-button pure-button-primary" type="submit" value="Send File" />
 		</form>
 	</div>
+
+	<!-- js -->
+	<script src="http://cdn.dashjs.org/latest/dash.all.js"></script>
+	<script src="main.js"></script>
 </body>
 </html>

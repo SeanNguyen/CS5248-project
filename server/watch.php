@@ -1,6 +1,7 @@
 <?php
 
-include 'dash.php';
+include_once("utilities.php");
+include_once("dash.php");
 
 set_time_limit(0);
 
@@ -20,6 +21,8 @@ while (1) {
 		if(strcmp($ext, "mp4") === 0) {
 			makeMpd($uploadPath . DIRECTORY_SEPARATOR . $newFiles[$i]);
 			print("Processed: " . $newFiles[$i] . "\n");
+			
+	    	unlink($uploadPath . DIRECTORY_SEPARATOR . $newFiles[$i]); // delete file
 		}
 	}
 	$oldFiles = scandir($uploadPath);
