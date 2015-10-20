@@ -92,9 +92,6 @@ while ($buff = fread($in, 4096)) {
 if (!$chunks || $chunk == $chunks - 1) {
 	// Strip the temp .part suffix off 
 	rename("{$filePath}.part", $filePath);
-
-	//run dash to prepare MPD materials
-	makeMpd($filePath);
 }
 // Return Success JSON-RPC response
 die('{"jsonrpc" : "2.0", "result" : "success", "id" : "' . $fileName . '"}');
