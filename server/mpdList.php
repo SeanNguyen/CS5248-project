@@ -12,7 +12,7 @@ foreach ($it as $file) {
 	$fileExt = getFileExtension($file);
 	if(strcmp($fileExt, $mpdFileExt) === 0) {
 		$file = str_replace("\\","/",$file);
-		$url = $_SERVER['SERVER_NAME'] . "/~team10/" . $file;
+		$url = $file;
 		array_push($mpdList, $url);
 	}
 }
