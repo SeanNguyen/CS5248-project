@@ -43,8 +43,8 @@ function makeMpd($sourceVideoPath) {
 				. ' --output ' . $videoResultPath . DIRECTORY_SEPARATOR .'intermediate.264 --preset slow'
 				. ' --min-keyint ' . $fps * $tentativeSegmentDuration 
 				. ' --keyint ' . $fps * $tentativeSegmentDuration 
-				. ' --scenecut 0 --no-scenecut --pass 1'
-				. ' --video-filter "resize:width=' . $width . ',height=' . $height . '" ' . $sourceVideoPath;
+				. ' --scenecut 0 --no-scenecut --pass 1 ' 
+				. $sourceVideoPath;
 	shell_exec($command);
 
 	$command = "MP4Box -add " . $videoResultPath . DIRECTORY_SEPARATOR . "intermediate.264 "
@@ -52,28 +52,15 @@ function makeMpd($sourceVideoPath) {
 	shell_exec($command);
 
 	//HALF QUALITY
-	$command = 'x264'
-				. ' --output ' . $videoResultPath . DIRECTORY_SEPARATOR .'intermediate.264 --preset slow'
-				. ' --min-keyint ' . $fps * $tentativeSegmentDuration 
-				. ' --keyint ' . $fps * $tentativeSegmentDuration 
-				. ' --scenecut 0 --no-scenecut --pass 1'
-				. ' --video-filter "resize:width=' . $width / 2 . ',height=' . $height / 2 . '" ' . $sourceVideoPath;
-	shell_exec($command);
-
-	$command = "MP4Box -add " . $videoResultPath . DIRECTORY_SEPARATOR . "intermediate.264 "
+	//ffmpeg -i SampleVideo_1080x720_5mb.mp4 -vf scale=320:240 output.mp4
+	$command = "ffmpeg -i " .  $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4 "
+				. "-vf scale=". $width / 2 . ":" . $height  / 2 . " "
 				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_half.mp4";
 	shell_exec($command);
 
 	//QUARTER QUALITY
-	$command = 'x264'
-				. ' --output ' . $videoResultPath . DIRECTORY_SEPARATOR .'intermediate.264 --preset slow'
-				. ' --min-keyint ' . $fps * $tentativeSegmentDuration 
-				. ' --keyint ' . $fps * $tentativeSegmentDuration 
-				. ' --scenecut 0 --no-scenecut --pass 1'
-				. ' --video-filter "resize:width=' . $width / 4 . ',height=' . $height  / 4 . '" ' . $sourceVideoPath;
-	shell_exec($command);
-
-	$command = "MP4Box -add " . $videoResultPath . DIRECTORY_SEPARATOR . "intermediate.264 "
+	$command = "ffmpeg -i " .  $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_original.mp4 "
+				. "-vf scale=". $width / 4 . ":" . $height  / 4 . " "
 				. $videoResultPath . DIRECTORY_SEPARATOR . $videoName . "_quarter.mp4";
 	shell_exec($command);
 
