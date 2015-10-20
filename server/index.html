@@ -13,14 +13,25 @@
 	<link rel="stylesheet" href="style.css">
 
 </head>
-<body>
+<body ng-app="app">
 	<!-- Main content -->
-	<div class="mainContainer">
+	<div class="mainContainer" ng-controller="AppController">
 		<!-- The data encoding type, enctype, MUST be specified as below -->
-		<h1>CS5248</h1>
-		<div>
+		<h2>CS5248 - Team 10</h2>
+		<h4>Play a video:</h4>
+    	<div ng-repeat="video in videos" >
+    		<button class="pure-button" ng-bind="video.name" ng-click="playVideo(video.url)">?</button>	
+    	</div>
+    
+    	<div class="videoPlayerContainer">
 			<video id="videoPlayer" controls="true"></video>
 	   	</div>
+		
+
+		<br>
+		<br>
+		<br>
+		<h4>Upload a video:</h4>
 		<form class="pure-form" enctype="multipart/form-data" action="upload.php" method="POST">
 		    <!-- MAX_FILE_SIZE must precede the file input field -->
 		    <input type="hidden" name="MAX_FILE_SIZE" value="200000000" />
@@ -32,6 +43,7 @@
 
 	<!-- js -->
 	<script src="http://cdn.dashjs.org/latest/dash.all.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 	<script src="main.js"></script>
 </body>
 </html>
