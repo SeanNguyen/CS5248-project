@@ -8,7 +8,7 @@
     	$scope.videos = [];
     	$scope.playVideo = playVideo;
 
-    	$http.get('/cs5248/mpdList.php')
+    	$http.get('mpdList.php')
     	.then(function(res) {
     		for (var i = res.data.length - 1; i >= 0; i--) {
     			$scope.videos.push({name: getNameFromUrl(res.data[i]), url: res.data[i]});
