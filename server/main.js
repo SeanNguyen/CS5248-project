@@ -8,7 +8,7 @@
     	$scope.videos = [];
     	$scope.playVideo = playVideo;
 
-    	$http.get('/mpdList.php')
+    	$http.get('/cs5248/mpdList.php')
     	.then(function(res) {
     		for (var i = res.data.length - 1; i >= 0; i--) {
     			$scope.videos.push({name: getNameFromUrl(res.data[i]), url: res.data[i]});
@@ -23,7 +23,17 @@
 		    var player = new MediaPlayer(context);
 		    player.startup();
 		    player.attachView(document.querySelector("#videoPlayer"));
-		    player.attachSource(url);	
+		    player.attachSource(url);
+
+
+            //
+            var conf = {
+                key:       "f7ab8103d935553f8d8b84aa6e87e5c4",
+                source: {
+                  dash:        url
+                }
+            };
+            var player = bitdash("player").setup(conf);
     	}
 
     	function getNameFromUrl(url) {
