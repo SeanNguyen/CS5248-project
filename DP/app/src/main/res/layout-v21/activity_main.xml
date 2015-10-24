@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentStart="true"
+    android:background="#4285f4">
+
+    <Button
+        android:id="@+id/player"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/recorder"
+        android:layout_below="@+id/recorder"
+        android:layout_marginTop="20dp"
+        android:text="Dash Player"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:typeface="serif" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/player"
+        android:layout_below="@+id/player"
+        android:layout_marginTop="25dp"
+        android:text="Quit"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:typeface="serif" />
+
+    <Button
+        android:id="@+id/recorder"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Record"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:typeface="serif" />
+    
+    <Button
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="record"/>
+
+    <ImageButton
+        android:id="@+id/info"
+        android:contentDescription="description_info"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:padding="20dp"/>
+
+
+</RelativeLayout>

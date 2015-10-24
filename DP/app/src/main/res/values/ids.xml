@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="video" type="id" />
+    <item name="button1" type="id" />
+    <item name="button2" type="id" />
+    <item name="recorder" type="id" />
+    <item name="exit" type="id" />
+    <item name="player" type="id" />
+    <item name="texture" type="id" />
+    <item name="mediaplayer" type="id" />
+    <item name="mp" type="id" />
+</resources>

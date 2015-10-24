@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DP</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="permission_request" />
+    <string name="intro_message" />
+    <string name="camera_error" />
+    <string name="Stop" />
+    <string name="record" />
+</resources>

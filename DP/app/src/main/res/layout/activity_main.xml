@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/player"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/recorder"
+        android:layout_below="@+id/recorder"
+        android:layout_marginTop="20dp"
+        android:text="Dash Player"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:typeface="serif" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/player"
+        android:layout_below="@+id/player"
+        android:layout_marginTop="25dp"
+        android:text="Quit"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:typeface="serif" />
+
+    <Button
+        android:id="@+id/recorder"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="Record"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:typeface="serif" />
+
+</RelativeLayout>
