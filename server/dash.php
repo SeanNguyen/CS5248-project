@@ -185,7 +185,7 @@ function makeHls($sourceVideoPath) {
 	$tentativeSegmentDuration = 10; //in seconds
 
 	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$videoResultPath.".ts");
-	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$video_file_path.$.".mp4");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$videoResultPath.".mp4");
 
 
 	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 768 ".$fps." ".($width / 2)."x".($height / 2)." 44100 128 ".$videoResultPath."_half.ts");
