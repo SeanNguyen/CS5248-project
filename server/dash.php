@@ -1,10 +1,9 @@
 <?php
 
+include_once("utilities.php");
+include_once("getid3/getid3.php");
+
 function makeMpd($sourceVideoPath) {
-
-	include_once("utilities.php");
-	include_once("getid3/getid3.php");
-
 	//some static constants
 	$videoRepoPath = "video_repo";
 
@@ -151,6 +150,46 @@ function makeMpd($sourceVideoPath) {
 	$mpdFile = fopen($mpdPath . ".mpd", "w");
 	fwrite($mpdFile, $mpd);
 	fclose($mpdFile);
+}
+
+function makeHls($sourceVideoPath) {
+	//some static constants
+	$videoRepoPath = "video_repo";
+	$videoExt = getFileExtension($sourceVideoPath);
+	$videoName = basename($sourceVideoPath, "." . $videoExt);
+	$videoResultPath = $videoRepoPath . DIRECTORY_SEPARATOR . $videoName;
+
+	//check if source video exist
+	if(!file_exists($sourceVideoPath)) {
+		echo "Source file does not exist!";
+		return;
+	}
+
+	//prepare an empty result folder
+	if (!file_exists($videoResultPath)) {
+	    mkdir($videoResultPath, 0777, true);
+	} else {
+		$files = glob($videoResultPath . DIRECTORY_SEPARATOR . '*'); // get all file names
+		foreach($files as $file){
+		  if(is_file($file))
+		    unlink($file); // delete file
+		}
+	}
+
+	//Analyze Original Video
+	$getID3 = new getID3;
+	$videoInfo = $getID3->analyze($sourceVideoPath);
+	$width = $videoInfo['video']['resolution_x'];
+	$height = $videoInfo['video']['resolution_y'];
+	$fps = $videoInfo["video"]["frame_rate"];
+	$tentativeSegmentDuration = 10; //in seconds
+
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$videoResultPath.".ts");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$video_file_path."_output3/".$videoResultPath.".mp4");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 768 ".$fps." ".$width/2."x".$height/2." 44100 128 ".$video_file_path."_output2/".$videoResultPath.".ts");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 768 ".$fps." ".$width/2."x".$height/2." 44100 128 ".$video_file_path."_output2/".$videoResultPath.".mp4");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 200 ".$fps." ".$width/4."x".$height/4." 44100 128 ".$video_file_path."_output1/".$videoResultPath.".ts");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 200 ".$fps." ".$width/4."x".$height/4." 44100 128 ".$video_file_path."_output1/".$videoResultPath.".mp4");
 }
 
 ?>

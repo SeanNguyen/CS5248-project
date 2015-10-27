@@ -19,7 +19,7 @@ while (1) {
 		//if the file is new, then add it to the list and process dash
 		$ext = getFileExtension($newFiles[$i]);
 		if(strcmp($ext, "mp4") === 0) {
-			makeMpd($uploadPath . DIRECTORY_SEPARATOR . $newFiles[$i]);
+			makeHls($uploadPath . DIRECTORY_SEPARATOR . $newFiles[$i]);
 			print("Processed: " . $newFiles[$i] . "\n");
 			
 	    	unlink($uploadPath . DIRECTORY_SEPARATOR . $newFiles[$i]); // delete file
