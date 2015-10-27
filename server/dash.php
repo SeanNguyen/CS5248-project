@@ -185,11 +185,13 @@ function makeHls($sourceVideoPath) {
 	$tentativeSegmentDuration = 10; //in seconds
 
 	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$videoResultPath.".ts");
-	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$video_file_path."_output3/".$videoResultPath.".mp4");
-	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 768 ".$fps." ".$width/2."x".$height/2." 44100 128 ".$video_file_path."_output2/".$videoResultPath.".ts");
-	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 768 ".$fps." ".$width/2."x".$height/2." 44100 128 ".$video_file_path."_output2/".$videoResultPath.".mp4");
-	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 200 ".$fps." ".$width/4."x".$height/4." 44100 128 ".$video_file_path."_output1/".$videoResultPath.".ts");
-	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 200 ".$fps." ".$width/4."x".$height/4." 44100 128 ".$video_file_path."_output1/".$videoResultPath.".mp4");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 3072 ".$fps." ".$width."x".$height." 44100 128 ".$video_file_path.$.".mp4");
+
+
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 768 ".$fps." ".($width / 2)."x".$height/2." 44100 128 ".$videoResultPath."_half.ts");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 768 ".$fps." ".($width / 2)."x".$height/2." 44100 128 ".$videoResultPath."_half.mp4");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 200 ".$fps." ".($width / 4)."x".$height/4." 44100 128 ".$videoResultPath."_quarter.ts");
+	echo shell_exec("/usr/local/bin/convert.sh ".$sourceVideoPath." 200 ".$fps." ".($width / 4)."x".$height/4." 44100 128 ".$videoResultPath."_quarter.mp4");
 }
 
 ?>
