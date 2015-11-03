@@ -15,4 +15,16 @@ function getFileExtension($filepath)
     }
 }
 
+//get name without segment number
+function getVideoName($fullName) {
+	$pos = strrpos($fullName, "_");
+	return substr($fullName, 0, $pos); 
+}
+
+//get the segment number
+function getSegmentNumber($fullName) {
+	$pos = strrpos($fullName, "_");
+	return substr($fullName, $pos + 1); 
+}
+
 ?>

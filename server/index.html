@@ -18,18 +18,6 @@
 	<div class="mainContainer" ng-controller="AppController">
 		<!-- The data encoding type, enctype, MUST be specified as below -->
 		<h2>CS5248 - Team 10</h2>
-		<h4>Play a video:</h4>
-    	<div ng-repeat="video in videos" >
-    		<button class="pure-button" ng-bind="video.name" ng-click="playVideo(video.url)">?</button>	
-    	</div>
-    
-    	<div class="videoPlayerContainer">
-			<video id="videoPlayer" controls="true"></video>
-	   	</div>
-		
-		
-		<div id="player"></div>
-
 		<br>
 		<br>
 		<br>
@@ -44,9 +32,7 @@
 	</div>
 
 	<!-- js -->
-	<script src="http://cdn.dashjs.org/latest/dash.all.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-	<script type="text/javascript" src="//bitdash-a.akamaihd.net/bitmovin-portal/562708836a97d/3724a07dc6/latest/bitdash.min.js"></script>
 	<script src="main.js"></script>
 </body>
 </html>

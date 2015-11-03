@@ -3,11 +3,11 @@
 include 'utilities.php';
 
 $videoRepoPath = "video_repo";
-$mpdFileExt = "mpd";
+$mpdFileExt = "m3u8";
 
 $mpdList = array();
 
-$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($videoRepoPath));
+$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($videoRepoPath . DIRECTORY_SEPARATOR . "playlists"));
 foreach ($it as $file) {
 	$fileExt = getFileExtension($file);
 	if(strcmp($fileExt, $mpdFileExt) === 0) {
