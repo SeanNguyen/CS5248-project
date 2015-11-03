@@ -29,6 +29,13 @@
 		    <input class="pure-button" name="file" type="file" />
 		    <input class="pure-button pure-button-primary" type="submit" value="Send File" />
 		</form>
+		<br>
+		<div>
+			<h4>Existing m3u8 files</h4>
+			<h5 ng-repeat="video in videos">/{{video.url}}</h5>
+			<a class="pure-button pure-button-primary" href="player/player.html">Copy an url above and try to play here</a>
+		</div>
+
 	</div>
 
 	<!-- js -->

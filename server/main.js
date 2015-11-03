@@ -5,26 +5,15 @@
     
     function AppController($scope, $http) {
     	$scope.videos = [];
-    	$scope.playVideo = playVideo;
 
-    	$http.get('hlsPlayList.php')
+    	$http.get('hlsList.php')
     	.then(function(res) {
     		for (var i = res.data.length - 1; i >= 0; i--) {
-    			$scope.videos.push({name: getNameFromUrl(res.data[i]), url: res.data[i]});
+    			$scope.videos.push({url: res.data[i]});
     		};
     	}, 
     	function() {
     		$scope.videos = [];
     	});
-
-    	function playVideo(url) {
-		    
-    	}
-
-    	function getNameFromUrl(url) {
-    		var startNamePos = url.lastIndexOf("/");
-    		var name = url.substring(startNamePos + 1);
-    		return name;
-    	}
     }
 })();
